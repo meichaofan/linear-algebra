@@ -1,8 +1,22 @@
+from ._global import EPSILON
+import math
+
+
 class Vector:
 
     def __init__(self, lst):
         # lst 复制，防止被外部修改
         self._values = list(lst)
+
+    def norm(self):
+        """返回向量的模"""
+        return math.sqrt(sum(e ** 2 for e in self))
+
+    def normalize(self):
+        """返回向量的单位向量（规范化）"""
+        if self.norm() < EPSILON:
+            raise ZeroDivisionError("Normalize error! norm is zero.")
+        return Vector(self._values) / self.norm()
 
     @classmethod
     def zero(cls, dim):
@@ -21,13 +35,23 @@ class Vector:
             "Error in adding. Length of vectors must be same."
         return Vector([a - b for a, b in zip(self, other)])
 
+    def dot(self, other):
+        """向量点乘，返回结果是标量"""
+        assert len(self) == len(other), \
+            "Error in adding. Length of vectors must be same."
+        return sum(a * b for a, b in zip(self, other))
+
     def __mul__(self, k):
         """返回数量乘法的结果：self * k """
         return Vector([k * a for a in self])
 
     def __rmul__(self, k):
         """返回数量乘法的结果：k * self """
-        return Vector([k * a for a in self])
+        return self * k
+
+    def __truediv__(self, k):
+        """返回数量除法的结果: self / k """
+        return (1 / k) * self
 
     def __pos__(self):
         """返回向量取正的结果向量"""
