@@ -6,6 +6,10 @@ class Matrix:
     def __init__(self, list2d):
         self._values = [row[:] for row in list2d]
 
+    def T(self):
+        """返回矩阵的转置矩阵"""
+        return Matrix([[e for e in self.col_vector(i)] for i in range(self.col_num())])
+
     def dot(self, other):
         """返回矩阵乘法的结果"""
         if isinstance(other, Vector):
