@@ -6,6 +6,20 @@ class Matrix:
     def __init__(self, list2d):
         self._values = [row[:] for row in list2d]
 
+    def dot(self, other):
+        """返回矩阵乘法的结果"""
+        if isinstance(other, Vector):
+            # 矩阵和向量的乘法
+            assert self.col_num() == len(other), \
+                "Error in Matrix-Vector Multiplication."
+            return Vector([self.row_vector(i).dot(other) for i in range(self.row_num())])
+        if isinstance(other, Matrix):
+            # 矩阵和矩阵的乘法
+            assert self.col_num() == other.row_num(), \
+                "Error in Matrix-Matrix Multiplication."
+            return Matrix([[self.row_vector(i).dot(other.col_vector(j)) for j in range(other.col_num())]
+                           for i in range(self.row_num())])
+
     @classmethod
     def zero(cls, r, c):
         """返回一个r行c列的零矩阵"""
