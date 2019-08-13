@@ -25,6 +25,14 @@ class Matrix:
                            for i in range(self.row_num())])
 
     @classmethod
+    def identity(cls, n):
+        """返回一个n行n列的单位矩阵"""
+        m = [[0] * n for _ in range(n)]
+        for i in range(n):
+            m[i][i] = 1
+        return cls(m)
+
+    @classmethod
     def zero(cls, r, c):
         """返回一个r行c列的零矩阵"""
         return Vector([0] * c for _ in range(r))
