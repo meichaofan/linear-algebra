@@ -18,6 +18,10 @@ class Vector:
             raise ZeroDivisionError("Normalize error! norm is zero.")
         return Vector(self._values) / self.norm()
 
+    def underlying_list(self):
+        """返回向量低层列表"""
+        return self._values[:]
+
     @classmethod
     def zero(cls, dim):
         """返回一个dim维的零向量"""
