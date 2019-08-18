@@ -1,6 +1,7 @@
 from playLA.Matrix import Matrix
 from playLA.Vector import Vector
 from playLA.LinearSystem import LinearSystem
+from playLA.LinearSystem import inv
 
 if __name__ == "__main__":
     A = Matrix([[1, 2, 4], [3, 7, 2], [2, 3, 3]])
@@ -37,3 +38,9 @@ if __name__ == "__main__":
         print("No solution")
     ls4.fancy_print()
     print()
+
+    A5 = Matrix([[1, 2], [3, 4]])
+    invA5 = inv(A5)
+    print(invA5)
+    print(A5.dot(invA5))
+    print(invA5.dot(A5))
