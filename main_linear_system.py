@@ -1,7 +1,7 @@
 from playLA.Matrix import Matrix
 from playLA.Vector import Vector
 from playLA.LinearSystem import LinearSystem
-from playLA.LinearSystem import inv
+from playLA.LinearSystem import inv, rank
 
 if __name__ == "__main__":
     A = Matrix([[1, 2, 4], [3, 7, 2], [2, 3, 3]])
@@ -26,6 +26,7 @@ if __name__ == "__main__":
     ls3 = LinearSystem(A3, b3)
     if not ls3.gauss_jordan_elimination():
         print("No solution")
+    print("ls3")
     ls3.fancy_print()
     print()
 
@@ -44,3 +45,5 @@ if __name__ == "__main__":
     print(invA5)
     print(A5.dot(invA5))
     print(invA5.dot(A5))
+
+    print(rank(A3))

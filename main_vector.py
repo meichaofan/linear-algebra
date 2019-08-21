@@ -29,3 +29,7 @@ if __name__ == "__main__":
         print("Can't normalize zero vector {}".format(zero))
 
     print("{} * {} = {}".format(vec, vec2, vec.dot(vec2)))
+
+    vec3 = Vector([1, 2, 3])
+    vec4 = Vector([1, 2, 3])
+    print(vec3 != vec4)

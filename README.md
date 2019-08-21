@@ -158,6 +158,11 @@ U:Upper Triangle Matrix 上三角矩阵
 - A = P L U
 - A = P L U P'
 
+### 线性组合
+
+#### 空间的基
+
+
 
 
 
