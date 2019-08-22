@@ -4,7 +4,10 @@ from .Vector import Vector
 class Matrix:
 
     def __init__(self, list2d):
-        self._values = [row[:] for row in list2d]
+        if isinstance(list2d[0], list):
+            self._values = [row[:] for row in list2d]
+        elif isinstance(list2d[0], Vector):
+            self._values = [row.underlying_list() for row in list2d]
 
     def T(self):
         """返回矩阵的转置矩阵"""
